@@ -1,0 +1,3 @@
+Module: https://tfhub.dev/google/universal-sentence-encoder/2
+Download Time: 2018-09-19 14:04:58.626149
+Downloader Hostname: Okar.local (PID:66218)
