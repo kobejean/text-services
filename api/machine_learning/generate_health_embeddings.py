@@ -59,37 +59,3 @@ with tf.Session() as session:
         print("Embedding: [{}, ...]\n".format(message_embedding_snippet))
 
     np.save("data/health_embeddings", message_embeddings)
-
-
-# def main(argv):
-#     astring = ''
-#     bstring = ''
-#     try:
-#         opts, args = getopt.getopt(argv,"ha:b:",["astring=","bstring="])
-#     except getopt.GetoptError:
-#         print('similarity.py -a <string1> -b <string2>')
-#         sys.exit(2)
-#     for opt, arg in opts:
-#         if opt == '-h':
-#             print('similarity.py -a <string1> -b <string2>')
-#             sys.exit()
-#         elif opt in ("-a", "--astring"):
-#             astring = arg
-#         elif opt in ("-b", "--bstring"):
-#             bstring = arg
-#
-#     # Import the Universal Sentence Encoder's TF Hub module
-#     embed = hub.Module(module_url)
-#
-#     # Reduce logging output.
-#     tf.logging.set_verbosity(tf.logging.ERROR)
-#
-#     similarities = tf.losses.cosine_distance(embed([astring]), embed([bstring]), axis=1)
-#
-#     with tf.Session() as session:
-#         session.run([tf.global_variables_initializer(), tf.tables_initializer()])
-#         computed_similarity = session.run(similarities)
-#         print("Similarity: {}\n".format(computed_similarity))
-#
-# if __name__ == "__main__":
-#     main(sys.argv[1:])
