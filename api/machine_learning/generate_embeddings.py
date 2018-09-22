@@ -3,8 +3,12 @@ import tensorflow_hub as hub
 import numpy as np
 import sys, getopt
 
-# module_url = "https://tfhub.dev/google/universal-sentence-encoder/2" #@param ["https://tfhub.dev/google/universal-sentence-encoder/2", "https://tfhub.dev/google/universal-sentence-encoder-large/3"]
-module_url = "universal_sencence_encoder_module/1fb57c3ffe1a38479233ee9853ddd7a8ac8a8c47"
+module_url = "https://tfhub.dev/google/universal-sentence-encoder/2" #@param ["https://tfhub.dev/google/universal-sentence-encoder/2", "https://tfhub.dev/google/universal-sentence-encoder-large/3"]
+var_data_file = "/universal_sencence_encoder_module/\
+                1fb57c3ffe1a38479233ee9853ddd7a8ac8a8c47/\
+                variables/variables.data-00000-of-00001"
+if (os.path.isfile(var_data_file)):
+    module_url = "universal_sencence_encoder_module/1fb57c3ffe1a38479233ee9853ddd7a8ac8a8c47"
 
 # Import the Universal Sentence Encoder's TF Hub module
 embed = hub.Module(module_url)
