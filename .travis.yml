@@ -3,13 +3,9 @@ dist: trusty
 matrix:
   include:
     - language: python
-      python:
-        - 3.7
-          dist: xenial
-        - 3.6
-        - 3.5
+      python: 3.6
       before_script:
-        - cd api/machine_learning
+        - cd src
       script:
         - python3 -m unittest discover -s ./ -p '*_test.py'
 before_install:
