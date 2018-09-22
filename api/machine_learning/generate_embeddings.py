@@ -23,7 +23,7 @@ embed = hub.Module(module_url)
 # past = "The world is old and the past is good."
 # anger = "The world is angry and a place of hate."
 # peace = "The world is peaceful and a place of love."
-# messages = [happy, sad, feminine, masculine, wealthy, poor, yin, yang, liberal,
+# health_strs = [happy, sad, feminine, masculine, wealthy, poor, yin, yang, liberal,
 #             conservative, future, past, anger, peace]
 
 happy = "happy"
@@ -40,22 +40,30 @@ future = "future"
 past = "past"
 anger = "anger"
 peace = "peace"
-messages = [happy, sad, feminine, masculine, wealthy, poor, yin, yang, liberal,
+health_strs = [happy, sad, feminine, masculine, wealthy, poor, yin, yang, liberal,
             conservative, future, past, anger, peace]
 
+synaesthesia_str = ["red", "orange", "yellow", "green", "blue", "purple"
+                    "black", "white", "grey"
+                    "circle", "square", "triangle"]
 
-# Reduce logging output.
-tf.logging.set_verbosity(tf.logging.ERROR)
+def generate_embeddings(messages, file_path):
 
-with tf.Session() as session:
-    session.run([tf.global_variables_initializer(), tf.tables_initializer()])
-    message_embeddings = session.run(embed(messages))
+    # Reduce logging output.
+    tf.logging.set_verbosity(tf.logging.ERROR)
 
-    for i, message_embedding in enumerate(np.array(message_embeddings).tolist()):
-        print("Message: {}".format(messages[i]))
-        print("Embedding size: {}".format(len(message_embedding)))
-        message_embedding_snippet = ", ".join(
-            (str(x) for x in message_embedding[:3]))
-        print("Embedding: [{}, ...]\n".format(message_embedding_snippet))
+    with tf.Session() as session:
+        session.run([tf.global_variables_initializer(), tf.tables_initializer()])
+        embeddings = session.run(embed(messages))
 
-    np.save("data/health_embeddings", message_embeddings)
+        for i, embedding in enumerate(np.array(embeddings).tolist()):
+            print("Message: {}".format(messages[i]))
+            print("Embedding size: {}".format(len(embedding)))
+            embedding_snippet = ", ".join(
+                (str(x) for x in embedding[:3]))
+            print("Embedding: [{}, ...]\n".format(embedding_snippet))
+
+        np.save(file_path, embeddings)
+
+generate_embeddings(health_strs, "data/embedding/health")
+generate_embeddings(synaesthesia_str, "data/embedding/synaesthesia")

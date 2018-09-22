@@ -11,7 +11,7 @@ embed = hub.Module(module_url)
 
 # Compute a representation for each message, showing various lengths supported.
 
-health_embeddings = np.load('data/health_embeddings.npy')
+health_embeddings = np.load('data/embed/health_embeddings.npy')
 happy = health_embeddings[0]
 sad = health_embeddings[1]
 feminine = health_embeddings[2]
@@ -53,6 +53,7 @@ def health_from_file(file_path):
         computed_stat = session.run(stat)
         print("happy feminine wealthy yin liberal future anger")
         print(computed_stat)
+        return computed_stat
 
 
 
