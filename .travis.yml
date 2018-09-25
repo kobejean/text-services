@@ -4,8 +4,8 @@ matrix:
   include:
     - language: python
       python: 3.6
-      before_script:
-        - cd src
+      # before_script:
+      #   - cd src
       script:
         - python3 -m src.similarity_test
         - python3 -m src.data.embed_gen_test
