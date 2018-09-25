@@ -3,7 +3,7 @@ import tensorflow_hub as hub
 import numpy as np
 import sys, getopt
 
-from models.embed import embed
+from .models.embed import embed
 
 def similarity(astring, bstring):
     # Reduce logging output.

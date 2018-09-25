@@ -7,7 +7,8 @@ matrix:
       before_script:
         - cd src
       script:
-        - python3 -m unittest discover -s ./ -p '*_test.py'
+        - python3 -m src.similarity_test
+        - python3 -m src.data.embed_gen_test
 before_install:
 - echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
 - git lfs pull

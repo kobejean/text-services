@@ -3,7 +3,7 @@ import tensorflow_hub as hub
 import numpy as np
 import sys, getopt
 
-from models.embed import embed
+from ..models.embed import embed
 
 # happy = "The world is a happy, wonderful place of heaven."
 # sad = "The world is a sad, dreadful place of hell."
@@ -43,7 +43,9 @@ synaesthesia_str = ["red", "orange", "yellow", "green", "blue", "purple"
                     "black", "white", "grey"
                     "circle", "square", "triangle"]
 
-def generate_embeddings(messages, file_path):
+def embed_gen(messages, file_path):
+    if not isinstance(messages, list) or not isinstance(file_path, str):
+        raise TypeError
 
     # Reduce logging output.
     tf.logging.set_verbosity(tf.logging.ERROR)
@@ -61,5 +63,6 @@ def generate_embeddings(messages, file_path):
 
         np.save(file_path, embeddings)
 
-generate_embeddings(health_strs, "../../data/embed/health")
-generate_embeddings(synaesthesia_str, "../../data/embed/synaesthesia")
+if __name__ == '__main__':
+    embed_gen(health_strs, "../../data/embed/health")
+    embed_gen(synaesthesia_str, "../../data/embed/synaesthesia")

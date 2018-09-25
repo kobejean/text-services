@@ -1,6 +1,8 @@
-from similarity import similarity as sim
-from subprocess import call
 import unittest
+
+from subprocess import call
+
+from .similarity import similarity as sim
 
 class TestSimilarity(unittest.TestCase):
 
